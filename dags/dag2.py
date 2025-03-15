@@ -16,7 +16,11 @@ dag = DAG('dag2', default_args=default_args, schedule_interval='0 * * * *', catc
 
 task1 = BashOperator(
     task_id='task1',
-    bash_command='python3 /airflow/scripts/dag2/task1.py --date {{ ds }} ' + f'--host {connection.host} --dbname {connection.schema} --user {connection.login} --jdbc_password {connection.password} --port 5432',
+    bash_command='python3 /airflow/scripts/dag2/task1.py --date {{ ds }} ' + f'--host {connection.host} '
+                                                                             f'--dbname {connection.schema} '
+                                                                             f'--user {connection.login} '
+                                                                             f'--jdbc_password {connection.password} '
+                                                                             f'--port 5432',
     dag=dag)
 
 task2 = BashOperator(
